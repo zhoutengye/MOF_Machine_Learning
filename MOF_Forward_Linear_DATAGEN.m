@@ -3,13 +3,13 @@ clc
 
 fig_option = 1;
 
-dd = 0.001;
+dd = 0.01;
 
 norm1 = linspace(-1+dd,1-dd,1/dd-1);
 norm2 = sqrt(1-norm1.^2);
 norm1 = [norm1,norm1];
 norm2 = [norm2,-norm2];
-intersecpt  = linspace(-10,10,1001);
+intersecpt  = linspace(-10,10,101);
 m1 = length(norm1);
 m2 = length(intersecpt);
 kk = 0;
@@ -26,9 +26,9 @@ for i = 1:m1
 			if (area>0 ) 
 				kk = kk+1;
 				fprintf(fileID,'%8.6f %8.6f %8.6f %8.6f %8.6f %8.6f\n',[norm1(i), norm2(i), intersecpt(j),area,centroid(1),centroid(2)]);
-% 			    clf;
-% 			    MOF_plot(n1,n2,c,area,centroid,fig_option);
-% 			    saveas(gcf,['figure/',num2str(kk),'.png'])
+			    clf;
+			    MOF_plot(n1,n2,c,area,centroid,fig_option);
+			    saveas(gcf,['figure/',num2str(kk),'.png'])
 			end
 	end
 end
