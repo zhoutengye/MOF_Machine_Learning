@@ -2,9 +2,9 @@ clear
 clc
 
 %% find area and centroid
-a = 1;
-b = -1;
-c = -0.5;
+a = 0.99;
+b = -0.141;
+c = 0.6;
 [nn,area,centroid] = Area_and_Centroid(a,b,c);
 fig_option = 1;
 MOF_plot(a,b,c,area,centroid,fig_option);
