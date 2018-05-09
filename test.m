@@ -3,8 +3,8 @@ clc
 
 % %% find area and centroid
 a = 0.5;
-b = 0.5;
-c = 0;
+b = -0.5;
+c = 0.7;
 [nn,area,centroid] = Area_and_Centroid(a,b,c);
 fig_option = 1;
 MOF_plot(a,b,c,area,centroid,fig_option);

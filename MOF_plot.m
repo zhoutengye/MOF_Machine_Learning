@@ -2,7 +2,8 @@ function MOF_plot(n1,n2,c,area,centroid,fig_option)
 
   a = n1;
   b = n2;
-  c = -b*c;
+  % c = -b*c;
+  c = -c*sqrt(n1*n1+n2*n2);
 
   set(gcf,  'Position', [100, 100, 700, 700]);
 axes_position=[0.05 0.05 0.9 0.9];
@@ -25,10 +26,10 @@ end
 xticks([]);
 yticks([]);
 
-fx0 = -c/a;
-  fx1 = -(c+b)/a;
-  f0y = -c/b;
-  f1y = -(c+a)/b;
+  fx0 = (0.5*b-c)/a;
+  fx1 = -(c+0.5*b)/a;
+  f0y = (0.5*a-c)/b;
+  f1y = -(c+0.5*a)/b;
 
   if (fx0>=-0.5 && fx0<=0.5 && f1y>=-0.5 && f1y<=0.5)
     x0 = 0.5 - 0.5 * (0.5-fx0);
@@ -36,13 +37,13 @@ fx0 = -c/a;
     q=quiver(x0,y0,n1/20,n2/20);
     q.MaxHeadSize = 30;
   elseif (f0y>=-0.5 && f0y<=0.5 && f1y>=-0.5 && f1y<=0.5)
-    x0 = 0 ;
+    x0 = 0.0 ;
     y0 = 0.5 * (f0y+f1y);
     q=quiver(x0,y0,n1/20,n2/20);
     q.MaxHeadSize = 30;
   elseif (fx0>=-0.5 && fx0<=0.5 && fx1>=-0.5 && fx1<=0.5)
     x0 = 0.5 * (fx0+fx1);
-    y0 = 0;
+    y0 = 0.0;
     q=quiver(x0,y0,n1/20,n2/20);
     q.MaxHeadSize = 30;
   elseif (f0y>=-0.5 && f0y<=0.5 && fx1>=-0.5 && fx1<=0.5)
@@ -64,6 +65,8 @@ fx0 = -c/a;
 
 hold off
 box on
+
+
 
 set(gcf,'PaperPositionMode','auto');
 set(gcf, 'InvertHardCopy', 'off');
