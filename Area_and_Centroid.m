@@ -4,24 +4,24 @@ function [n,area,centroid] = Area_and_Centroid(n1,n2,c)
 
   a = n1;
   b = n2;
-  c = -b*c;
+  c = -c*(n1*n1-n2*n2)/sqrt(n1*n1+n2*n2);
 
   fx0 = -c/a;
   fx1 = -(c+b)/a;
   f0y = -c/b;
   f1y = -(c+a)/b;
 
-  if (fx0>=0 && fx0<=1 && f1y>=0 && f1y<=1)
+  if (fx0>=-0.5 && fx0<=0.5 && f1y>=-0.5 && f1y<=0.5)
     n = 1;
-  elseif (f0y>=0 && f0y<=1 && f1y>=0 && f1y<=1)
+  elseif (f0y>=-0.5 && f0y<=0.5 && f1y>=-0.5 && f1y<=0.5)
     n = 2;
-  elseif (fx0>=0 && fx0<=1 && fx1>=0 && fx1<=1)
+  elseif (fx0>=-0.5 && fx0<=0.5 && fx1>=-0.5 && fx1<=0.5)
     n = 3;
-  elseif (f0y>=0 && f0y<=1 && fx1>=0 && fx1<=1)
+  elseif (f0y>=-0.5 && f0y<=0.5 && fx1>=-0.5 && fx1<=0.5)
     n = 4;
-  elseif (fx0>=0 && fx0<=1 && f0y>=0 && f0y<=1)
+  elseif (fx0>=-0.0 && fx0<=0.5 && f0y>=-0.5 && f0y<=0.5)
     n = 5;
-  elseif (fx1>=0 && fx1<=1 && f1y>=0 && f1y<=1)
+  elseif (fx1>=-0.5 && fx1<=0.5 && f1y>=-0.5 && f1y<=0.5)
     n = 6;
   else
     n = 0;
