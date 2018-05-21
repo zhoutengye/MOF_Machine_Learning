@@ -3,7 +3,7 @@ clc
 
 fig_option = 1;
 
-dd = 0.01;
+dd = 0.001;
 
 norm1 = linspace(-1+dd,1-dd,1/dd-1);
 norm2 = sqrt(1-norm1.^2);
@@ -36,7 +36,7 @@ end
 fclose(fileID);
 
 		
-dd = 0.01;
+dd = 0.001;
 
 norm4 = linspace(-1+dd,1-dd,1/dd-1);
 norm3 = sqrt(1-norm4.^2);
