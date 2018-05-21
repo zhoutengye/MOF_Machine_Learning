@@ -1,5 +1,6 @@
 import math
 
+import time
 from matplotlib import cm
 from matplotlib import gridspec
 from matplotlib import pyplot as plt
@@ -10,7 +11,7 @@ from sklearn import linear_model
 
 
 # Load Training Date and test data
-f = np.loadtxt('MOF_Training.dat',unpack='true')
+f = np.loadtxt('MOF_Training4.dat',unpack='true')
 f2 = np.loadtxt('MOF_test.dat',unpack='true')
 
 # X: training input data    y: training output data
@@ -20,7 +21,25 @@ f2 = np.loadtxt('MOF_test.dat',unpack='true')
 X = np.transpose(f[3:6,:])
 y = np.transpose(f[0:3,:])
 # to change the range of test data, sinply change the subscripts or import other data.
-X2 = np.transpose(f2[3:6,100:110])
+n_test = 10
+L = np.zeros((n_test,6))
+for i in range(0,n_test):
+	L[i,:] = np.transpose(f2[:,np.random.randint(low = 1,high = len(f2[0]))])
+	X2 = L[:,3:6]
+	Y3 = L[:,0:3]
+	
+
+# y = np.zeros((len(f[0]),2))
+# X = np.transpose(f[3:6,:])
+# y[:,0] =  np.transpose(f[0,:])
+# y[:,1] =  np.transpose(f[2,:])
+# # to change the range of test data, sinply change the subscripts or import other data.
+# n_test = 10
+# L = np.zeros((n_test,6))
+# for i in range(0,n_test):
+# 	L[i,:] = np.transpose(f2[:,np.random.randint(low = 1,high = len(f2[0]))])
+# 	X2 = L[:,3:6]
+# 	Y3 = L[:,0:3]
 
 # sklean stuff
 lm = linear_model.LinearRegression()
@@ -32,6 +51,20 @@ lm.fit(X,y)
 y2 = lm.predict(X2)
 
 # peint(regr.coef_)
+
+# sklean stuff
+regr = linear_model.LinearRegression()
+
+timer1 = time.clock()
+# Linear fit
+regr.fit(X,y)
+
+timer2 = time.clock()
+
+# predict the results with test data input
+y2 = regr.predict(X2)
+
+timer3 = time.clock()
 
  
 print(' Input X Centroid, Y centroid, Area')
@@ -45,5 +78,11 @@ print(' ')
 
 # print exact norm X norm, Y norm, Intersecpt
 print(' exact norm X norm, Y norm, Intersecpt')
-print(np.transpose(f2[0:3,100:110]))
+print(Y3)
 print(' ')
+
+print(' CPU_time for fit')
+print(timer2-timer1)
+
+print(' CPU_time for predict')
+print(timer3-timer2)

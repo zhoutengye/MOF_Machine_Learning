@@ -33,32 +33,32 @@ function [n,area,centroid] = Area_and_Centroid(n1,n2,c)
   switch n
     case 1
       area = 0.5 * (0.5-fx0) * (f1y+0.5);
-      centroid(1) = 0.5 - (0.5-fx0) / 3;
+      centroid(1) = 0.5 - (0.5-fx0+1e-10) / 3;
       centroid(2) = (f1y+0.5) / 3 - 0.5;
       if (n1<0)
         area2 = 1 - area;
-        centroid(1) = -centroid(1)*area / area2;
-        centroid(2) = -centroid(2)*area / area2;
+        centroid(1) = -centroid(1)*area / (area2+1e-10);
+        centroid(2) = -centroid(2)*area / (area2+1e-10);
         area = area2;
       end
     case 2
       area = 0.5 * (f0y+f1y+1);
-      centroid(1) = 1/3 * (2*(f1y+0.5)+(f0y+0.5)) / (f1y+f0y+1)-0.5;
-      centroid(2) = ((f0y+0.5)^2+(f1y+0.5)^2+(f0y+0.5)*(f1y+0.5)) / (f0y+f1y+1) /3-0.5;
+      centroid(1) = 1/3 * (2*(f1y+0.5)+(f0y+0.5)) / (f1y+f0y+1+1e-10)-0.5;
+      centroid(2) = ((f0y+0.5)^2+(f1y+0.5)^2+(f0y+0.5)*(f1y+0.5)) / (f0y+f1y+1+1e-10) /3-0.5;
       if (n2>0)
         area2 = 1 - area;
-        centroid(1) = -centroid(1)*area / area2;
-        centroid(2) = -centroid(2)*area / area2;
+        centroid(1) = -centroid(1)*area / (area2+1e-10);
+        centroid(2) = -centroid(2)*area / (area2+1e-10);
         area = area2;
       end
     case 3
       area = 0.5 * (fx0+fx1+1);
-      centroid(1) = ((fx0+0.5)^2+(fx1+0.5)^2+(fx0+0.5)*(fx1+0.5)) / (fx0+fx1+1) /3-0.5;
-      centroid(2) = 1/3 * (2*(fx1+0.5)+fx0+0.5) / (fx0+fx1+1)-0.5;
+      centroid(1) = ((fx0+0.5)^2+(fx1+0.5)^2+(fx0+0.5)*(fx1+0.5)) / (fx0+fx1+1+1e-10) /3-0.5;
+      centroid(2) = 1/3 * (2*(fx1+0.5)+fx0+0.5) / (fx0+fx1+1+1e-10)-0.5;
       if (n1>0)
         area2 = 1 - area;
-        centroid(1) = -centroid(1)*area / area2;
-        centroid(2) = -centroid(2)*area / area2;
+        centroid(1) = -centroid(1)*area / (area2+1e-10);
+        centroid(2) = -centroid(2)*area / (area2+1e-10);
         area = area2;
       end
     case 4
@@ -67,8 +67,8 @@ function [n,area,centroid] = Area_and_Centroid(n1,n2,c)
       centroid(2) = 0.5 - (0.5-f0y) / 3;
       if (n1>0)
         area2 = 1 - area;
-        centroid(1) = -centroid(1)*area / area2;
-        centroid(2) = -centroid(2)*area / area2;
+        centroid(1) = -centroid(1)*area / (area2+1e-10);
+        centroid(2) = -centroid(2)*area / (area2+1e-10);
         area = area2;
       end
     case 5
@@ -77,8 +77,8 @@ function [n,area,centroid] = Area_and_Centroid(n1,n2,c)
       centroid(2) = (f0y+0.5) / 3 - 0.5;
       if (n1>0)
         area2= 1 - area;
-        centroid(1) = -centroid(1)*area / area2;
-        centroid(2) = -centroid(2)*area / area2;
+        centroid(1) = -centroid(1)*area / (area2+1e-10);
+        centroid(2) = -centroid(2)*area / (area2+1e-10);
         area = area2;
       end
     case 6
@@ -87,8 +87,8 @@ function [n,area,centroid] = Area_and_Centroid(n1,n2,c)
       centroid(2) = 0.5 - (0.5-f1y) / 3;
       if (n1<0) 
         area2 = 1 - area;
-        centroid(1) = -centroid(1)*area / area2;
-        centroid(2) = -centroid(2)*area / area2;
+        centroid(1) = -centroid(1)*area / (area2+1e-10);
+        centroid(2) = -centroid(2)*area / (area2+1e-10);
         area = area2;
       end
   end
