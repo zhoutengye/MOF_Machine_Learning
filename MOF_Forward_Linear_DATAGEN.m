@@ -9,12 +9,14 @@ norm1 = linspace(-1+dd,1-dd,1/dd-1);
 norm2 = sqrt(1-norm1.^2);
 norm1 = [norm1,norm1];
 norm2 = [norm2,-norm2];
-intersecpt  = linspace(-1,1,1001);
+intersecpt  = linspace(-1,1,101);
 m1 = length(norm1);
 m2 = length(intersecpt);
 kk = 0;
 
 fileID = fopen('MOF_Training.dat','w');
+fileID11 = fopen('MOF_Training_Input.dat','w');
+fileID12 = fopen('MOF_Training_Output.dat','w');
 
 for i = 1:m1
 	for j = 1:m2
@@ -26,6 +28,8 @@ for i = 1:m1
 			if (area>0 && area ~=NaN && n1 ~=NaN && n2 ~=NaN && centroid(1) ~=NaN && centroid(2) ~=NaN && c ~=NaN) 
 				kk = kk+1;
 				fprintf(fileID,'%8.6f %8.6f %8.6f %8.6f %8.6f %8.6f\n',[norm1(i), norm2(i), intersecpt(j),area,centroid(1),centroid(2)]);
+			    fprintf(fileID11,'%8.6f %8.6f %8.6f\n',[area,centroid(1),centroid(2)]);			    
+			    fprintf(fileID12,'%8.6f %8.6f %8.6f\n',[norm1(i), norm2(i), intersecpt(j)]);
 			    % clf;
 			    % MOF_plot(n1,n2,c,area,centroid,fig_option);
 			    % saveas(gcf,['figure/',num2str(kk),'.png'])

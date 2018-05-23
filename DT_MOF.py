@@ -6,20 +6,21 @@ from matplotlib import gridspec
 from matplotlib import pyplot as plt
 import numpy as np
 import sklearn
-from sklearn import metrics
-from sklearn.neural_network import MLPRegressor
+from sklearn.tree import DecisionTreeRegressor
+
 
 
 # Load Training Date and test data
-f = np.loadtxt('MOF_Training.dat',unpack='true')
+f = np.loadtxt('MOF_Training4.dat',unpack='true')
 f2 = np.loadtxt('MOF_test.dat',unpack='true')
 
 # X: training input data    y: training output data
 # X2: test inut data 
 # (It is weird that although I put 0:3 and 3:6, it is actually actually 0:2, 3:5 columns.
-#    Not sure if there is somthing wrong on my laptop) 
+#    Not sure if there is somthing wron, on my laptop) 
 X = np.transpose(f[3:6,:])
 y = np.transpose(f[0:3,:])
+
 # to change the range of test data, sinply change the subscripts or import other data.
 n_test = 10
 L = np.zeros((n_test,6))
@@ -41,7 +42,7 @@ for i in range(0,n_test):
 # 	Y3 = L[:,0:3]
 
 # sklean stuff
-regr = MLPRegressor()
+regr =DecisionTreeRegressor()
 
 timer1 = time.clock()
 # Linear fit

@@ -24,7 +24,7 @@ y = np.transpose(f[0:3,:])
 n_test = 10
 L = np.zeros((n_test,6))
 for i in range(0,n_test):
-	L[i,:] = np.transpose(f2[:,np.random.randint(low = 1,high = len(f[0]))])
+	L[i,:] = np.transpose(f2[:,np.random.randint(low = 1,high = len(f2[0]))])
 	X2 = L[:,3:6]
 	Y3 = L[:,0:3]
 
