@@ -33,10 +33,10 @@ Module Read_File
       Select Case( Test_String (i:i) )
       Case( '"' , "'" ) !// when the data is devided by " or '
         If ( .Not.bIsQuote )  Num_Row = Num_Row + 1  !//If not inbetween 
-        bIsQuote = .Not.bIsQuote !// 引号结束或开始
+        bIsQuote = .Not.bIsQuote !// Begging or end of " or ''
         bIsSeparator = .FALSE.
-      Case( " " , "," , char(9) ) !// 如果遇到分隔符
-        If ( .Not.bIsQuote ) then  !// 分隔符如果不在引号中
+      Case( " " , "," , char(9) ) !// when meet space or comma
+        If ( .Not.bIsQuote ) then  !// if space or comma not in between " or ''
           bIsSeparator = .TRUE.
         End If
       Case Default     
@@ -129,12 +129,27 @@ Module Linear_Regressors
     Integer, Intent(In) :: Training_Inputs(L_Training,N_Input)
     Integer, Intent(In) :: Training_Outputs(L_Training,N_Output)
 
+    Real :: Learning_Rate
+
 
   
 
   End Subroutine Gradient_Decent
 
-  Function CostFunction
+  Function Cost_Function
+
+  End Function Cost_Function
+
+  Function Gradient_Decent(y) Result(Grad)
+
+    Integer :: 
+    Real :: Grad
+    Real :: y,
+
+    grad = 0
+
+
+  End Function Gradient_Decent
 
 End Module Linear_Regressors
 
